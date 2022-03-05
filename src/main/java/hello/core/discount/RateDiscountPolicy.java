@@ -1,9 +1,7 @@
 package hello.core.discount;
 
-import hello.core.memeber.Grade;
-import hello.core.memeber.Member;
-import hello.core.memeber.MemberService;
-import hello.core.memeber.MemberServiceImpl;
+import hello.core.member.Grade;
+import hello.core.member.Member;
 
 //정률 할인 정책(할인율 계산)
 public class RateDiscountPolicy implements DiscountPolicy{
