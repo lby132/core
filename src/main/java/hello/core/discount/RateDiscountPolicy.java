@@ -1,10 +1,10 @@
 package hello.core.discount;
 
+import hello.core.annotation.MainDiscountPolicy;
 import hello.core.member.Grade;
 import hello.core.member.Member;
 import org.springframework.stereotype.Component;
 
-@Component
 //정률 할인 정책(할인율 계산)
 public class RateDiscountPolicy implements DiscountPolicy{
 
