@@ -1,17 +1,18 @@
 package hello.core.scope;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Scope;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.inject.Provider;
 
-import static org.assertj.core.api.Assertions.*;
+import java.util.ServiceLoader;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class PrototypeProviderTest {
 
@@ -30,14 +31,24 @@ public class PrototypeProviderTest {
 
     static class ClientBean {
 
+        //implementation 'javax.inject:javax.inject:1' gradle 추가 필수
         @Autowired
+        private Provider<PrototypeBean> provider;
+
+        public int logic() {
+            final PrototypeBean prototypeBean = provider.get();
+            prototypeBean.addCount();
+            return prototypeBean.getCount();
+        }
+
+        /*@Autowired
         private ObjectProvider<PrototypeBean> prototypeBeanProvider;
 
         public int logic() {
             final PrototypeBean prototypeBean = prototypeBeanProvider.getObject();
             prototypeBean.addCount();
             return prototypeBean.getCount();
-        }
+        }*/
 
         /*@Autowired
         private ApplicationContext ac;
